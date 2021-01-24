@@ -5,6 +5,8 @@ import axios from "axios";
 
 import Game from "./game";
 
+import "./App.css";
+
 function App() {
   useEffect(() => {
     const test = async () => {
@@ -14,7 +16,7 @@ function App() {
     test();
   }, []);
   return (
-    <Box py={6}>
+    <Box py={4}>
       <Game />
     </Box>
   );
