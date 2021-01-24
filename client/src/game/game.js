@@ -49,7 +49,7 @@ const getGameState = (board) => {
       const index = r * 7 + c;
       const boardSlice = board.slice(index, index + 4);
 
-      const winningResult = checkWinningSlice(boardSlice);
+      const winningResult = checkConnect4(boardSlice);
       if (winningResult !== false) return winningResult;
     }
   }
@@ -65,7 +65,7 @@ const getGameState = (board) => {
         board[index + 7 * 3],
       ];
 
-      const winningResult = checkWinningSlice(boardSlice);
+      const winningResult = checkConnect4(boardSlice);
       if (winningResult !== false) return winningResult;
     }
   }
@@ -84,7 +84,7 @@ const getGameState = (board) => {
           board[index + 7 * 3 - 3],
         ];
 
-        const winningResult = checkWinningSlice(boardSlice);
+        const winningResult = checkConnect4(boardSlice);
         if (winningResult !== false) return winningResult;
       }
 
@@ -97,7 +97,7 @@ const getGameState = (board) => {
           board[index + 7 * 3 + 3],
         ];
 
-        const winningResult = checkWinningSlice(boardSlice);
+        const winningResult = checkConnect4(boardSlice);
         if (winningResult !== false) return winningResult;
       }
     }
@@ -110,7 +110,7 @@ const getGameState = (board) => {
   }
 };
 
-const checkWinningSlice = (miniBoard) => {
+const checkConnect4 = (miniBoard) => {
   if (miniBoard.some((cell) => cell === Player.None)) return false;
 
   if (

@@ -15,6 +15,7 @@ function App() {
     };
     test();
   }, []);
+
   return (
     <Box py={4}>
       <Game />
