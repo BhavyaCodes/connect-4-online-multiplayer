@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { Box } from "@material-ui/core";
+
 import axios from "axios";
-import "./App.css";
+
+import Game from "./game";
 
 function App() {
   useEffect(() => {
@@ -10,7 +13,11 @@ function App() {
     };
     test();
   }, []);
-  return <div className="App">App</div>;
+  return (
+    <Box py={6}>
+      <Game />
+    </Box>
+  );
 }
 
 export default App;
