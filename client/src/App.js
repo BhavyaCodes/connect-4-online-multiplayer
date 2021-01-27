@@ -4,7 +4,9 @@ import { Switch, Route } from "react-router-dom";
 
 import axios from "axios";
 
+import { UserProvider } from "./context/UserContext";
 import Game from "./game";
+import Rooms from "./components/Rooms";
 
 import "./App.css";
 
@@ -18,16 +20,18 @@ function App() {
   }, []);
 
   return (
-    <Switch>
-      <Route path="/" exact>
-        hello
-      </Route>
-      <Route path="/game">
-        <Box py={4}>
-          <Game />
-        </Box>
-      </Route>
-    </Switch>
+    <UserProvider>
+      <Switch>
+        <Route path="/" exact>
+          <Rooms />
+        </Route>
+        <Route path="/game">
+          <Box py={4}>
+            <Game />
+          </Box>
+        </Route>
+      </Switch>
+    </UserProvider>
   );
 }
 
