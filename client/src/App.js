@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Box } from "@material-ui/core";
+import { Switch, Route } from "react-router-dom";
 
 import axios from "axios";
 
@@ -17,9 +18,16 @@ function App() {
   }, []);
 
   return (
-    <Box py={4}>
-      <Game />
-    </Box>
+    <Switch>
+      <Route path="/" exact>
+        hello
+      </Route>
+      <Route path="/game">
+        <Box py={4}>
+          <Game />
+        </Box>
+      </Route>
+    </Switch>
   );
 }
 
