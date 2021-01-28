@@ -235,8 +235,17 @@ function Player2Game({ room, setGameJoined }) {
   return (
     <div>
       <h1>Player 2 Game</h1>
-      <h2 className="yellow-text">{room["0"]?.name}</h2>
-      <h2 className="red-text">{room["1"]?.name || "waiting for player 2"}</h2>
+      {!room["1"]?.name ? (
+        <Typography variant="h2" align="center" gutterBottom>
+          Waiting for player 2
+        </Typography>
+      ) : (
+        <Typography variant="h2" align="center" gutterBottom>
+          <span className="yellow-text">{room["0"]?.name}</span> vs{" "}
+          <span className="red-text">{room["1"]?.name}</span>
+        </Typography>
+      )}
+
       <Box>
         {renderGameStatus()}
         <Box className="board" my={2}>
