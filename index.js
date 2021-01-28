@@ -26,9 +26,13 @@ io.on("connection", (socket) => {
     socket.join(user.id);
   });
   socket.on("join-room", (roomId, user) => {
-    rooms[roomId][1] = user;
-    io.emit("room-created", rooms);
-    socket.join(roomId);
+    try {
+      rooms[roomId][1] = user;
+      io.emit("room-created", rooms);
+      socket.join(roomId);
+    } catch (error) {
+      console.log(error);
+    }
   });
   socket.on("send-turn", (roomId, state) => {
     socket.to(roomId).broadcast.emit("turn", state);
