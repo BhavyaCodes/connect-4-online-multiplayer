@@ -25,7 +25,8 @@ io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
   socket.on("join-room", (roomId, user) => {
-    rooms[roomId][2] = user;
+    rooms[roomId][1] = user;
+    io.emit("room-created", rooms);
     console.log(rooms);
   });
 });

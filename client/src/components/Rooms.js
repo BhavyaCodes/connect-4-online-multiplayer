@@ -39,13 +39,30 @@ function Rooms() {
     return () => socket.off("receive-message");
   }, [socket]);
 
+  function handleJoinRoom(roomId) {
+    console.log(roomId);
+    socket.emit("join-room", roomId, user);
+  }
   return (
     <div>
       <p>Rooms</p>
       {rooms.map((room) => (
         <div key={room["0"].id}>
           <p>{room["0"].name}</p>
-          {user.id !== room["0"].id && <button type="button">Join</button>}
+          {room["1"] ? (
+            <p>Game in progress</p>
+          ) : (
+            user.id !== room["0"].id && (
+              <button
+                type="button"
+                onClick={() => {
+                  handleJoinRoom(room["0"].id);
+                }}
+              >
+                Join
+              </button>
+            )
+          )}
         </div>
       ))}
       <button onClick={handleCreateRoom} type="button">
