@@ -45,18 +45,28 @@ function Rooms() {
     return () => socket.off("room-created");
   }, [socket]);
 
+  function closeRoom() {
+    socket.emit("close-room");
+  }
+
   function handleJoinRoom(roomId) {
     setGameJoined(roomId);
     socket.emit("join-room", roomId, user);
   }
   if (gameJoined) {
     const index = rooms.findIndex((value) => value["0"].id === gameJoined);
-    return <Player2Game room={rooms[index]} />;
+    return <Player2Game room={rooms[index]} setGameJoined={setGameJoined} />;
   }
 
   if (gameCreated) {
     const index = rooms.findIndex((value) => value["0"].id === user.id);
-    return <Player1Game room={rooms[index]} />;
+    return (
+      <Player1Game
+        room={rooms[index]}
+        closeRoom={closeRoom}
+        setGameCreated={setGameCreated}
+      />
+    );
   }
 
   return (

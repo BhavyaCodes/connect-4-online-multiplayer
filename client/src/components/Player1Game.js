@@ -125,7 +125,7 @@ const checkConnect4 = (miniBoard) => {
   return false;
 };
 
-function Player1Game({ room }) {
+function Player1Game({ room, setGameCreated, closeRoom }) {
   const socket = useSocket();
   const [board, setBoard] = useState(intitializeBoard());
   const [playerTurn, setPlayerTurn] = useState(Player.One);
@@ -142,6 +142,19 @@ function Player1Game({ room }) {
 
     return () => socket.off("turn");
   }, [socket]);
+
+  useEffect(() => {
+    console.log(gameState);
+    const timeout = setTimeout(() => {
+      if (gameState !== -1) {
+        closeRoom();
+        setGameCreated(false);
+      }
+    }, 10000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [gameState, setGameCreated, closeRoom]);
 
   if (!room) {
     return <h1>Disconnected</h1>;
@@ -197,9 +210,9 @@ function Player1Game({ room }) {
     } else if (gameState === GameState.Draw) {
       text = "Game is a draw.";
     } else if (gameState === GameState.PlayerOneWin) {
-      text = "Player 1 won!";
+      text = "You won!";
     } else if (gameState === GameState.PlayerTwoWin) {
-      text = "Player 2 won!";
+      text = `${room["1"]?.name} won!`;
     }
 
     return (
