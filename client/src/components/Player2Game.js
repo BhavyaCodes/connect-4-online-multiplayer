@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSocket } from "../context/SocketProvider";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Button } from "@material-ui/core";
 
 import "./game.css";
 
@@ -157,16 +157,22 @@ function Player2Game({ room, setGameJoined }) {
 
   if (!room) {
     return (
-      <div>
-        <h1>Disconnected</h1>
-        <button
+      <Box textAlign="center" pt={4}>
+        <Box py={3}>
+          <Typography variant="h3">
+            Oops, looks like opponent Disconnected...!
+          </Typography>
+        </Box>
+        <Button
+          variant="contained"
+          color="secondary"
           onClick={() => {
             setGameJoined(false);
           }}
         >
           Go Back
-        </button>
-      </div>
+        </Button>
+      </Box>
     );
   }
 
@@ -216,9 +222,9 @@ function Player2Game({ room, setGameJoined }) {
   const renderGameStatus = () => {
     let text;
     if (gameState === GameState.Ongoing) {
-      text = "Game is in progress...";
+      text = "Game is in progress...🔥";
     } else if (gameState === GameState.Draw) {
-      text = "Game is a draw.";
+      text = "Game is a draw.🙁";
     } else if (gameState === GameState.PlayerOneWin) {
       text = `${room["0"]?.name} 1 won!`;
     } else if (gameState === GameState.PlayerTwoWin) {
@@ -226,7 +232,7 @@ function Player2Game({ room, setGameJoined }) {
     }
 
     return (
-      <Typography variant="h3" align="center" mb={1}>
+      <Typography variant="h5" align="center" mb={1}>
         {text}
       </Typography>
     );
@@ -234,10 +240,9 @@ function Player2Game({ room, setGameJoined }) {
 
   return (
     <div>
-      <h1>Player 2 Game</h1>
       {!room["1"]?.name ? (
         <Typography
-          variant="h2"
+          variant="h3"
           align="center"
           gutterBottom
           style={{ fontWeight: 500 }}
