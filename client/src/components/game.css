@@ -1,0 +1,25 @@
+.board {
+  background-image: linear-gradient(#3ca3ff, #005eb3);
+  width: 800px;
+  margin: auto;
+  padding: 8px;
+}
+
+.board > .cell {
+  width: calc(800px / 7 - 8px);
+  height: calc(800px / 7 - 8px);
+  background: white;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.board > .cell[data-player="playerOne"] {
+  background-image: linear-gradient(#ffffc9, #cece00);
+}
+
+.board > .cell[data-player="playerTwo"] {
+  background-image: linear-gradient(#fb7272, #da0000);
+}

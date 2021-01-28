@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { useSocket } from "../context/SocketProvider";
 import axios from "axios";
 import Player1Game from "../components/Player1Game";
-import Player2Game from "../components/Player1Game";
+import Player2Game from "../components/Player2Game";
 
 function Rooms() {
   const user = useContext(UserContext);
@@ -15,7 +15,7 @@ function Rooms() {
   console.log(rooms);
 
   async function handleCreateRoom() {
-    await axios.post("/api/room", user);
+    socket.emit("create-room", user);
     setGameCreated(true);
   }
 
@@ -43,21 +43,21 @@ function Rooms() {
       setRooms(arr);
     });
 
-    return () => socket.off("receive-message");
+    return () => socket.off("room-created");
   }, [socket]);
 
   function handleJoinRoom(roomId) {
     setGameJoined(roomId);
     socket.emit("join-room", roomId, user);
   }
+  if (gameJoined) {
+    const index = rooms.findIndex((value) => value["0"].id === gameJoined);
+    return <Player2Game room={rooms[index]} />;
+  }
 
   if (gameCreated) {
     const index = rooms.findIndex((value) => value["0"].id === user.id);
     return <Player1Game room={rooms[index]} />;
-  }
-  if (gameJoined) {
-    const index = rooms.findIndex((value) => value["0"].id === gameJoined);
-    return <Player2Game room={rooms[index]} />;
   }
 
   return (
