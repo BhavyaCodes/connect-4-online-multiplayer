@@ -27,10 +27,8 @@ io.on("connection", (socket) => {
     rooms[roomId][1] = user;
     io.emit("room-created", rooms);
     socket.join(roomId);
-    console.log(rooms);
   });
   socket.on("send-turn", (roomId, state) => {
-    console.log(state);
     socket.to(roomId).broadcast.emit("turn", state);
   });
   socket.on("disconnect", () => {

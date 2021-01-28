@@ -130,13 +130,11 @@ function Player2Game({ room }) {
   const [board, setBoard] = useState(intitializeBoard());
   const [playerTurn, setPlayerTurn] = useState(Player.One);
   const [gameState, setGameState] = useState(GameState.Ongoing);
-  // console.log(room);
 
   useEffect(() => {
     if (socket == null) return;
 
     socket.on("turn", (state) => {
-      console.log(state);
       setBoard(state.board);
       setPlayerTurn(state.playerTurn);
       setGameState(state.gameState);
