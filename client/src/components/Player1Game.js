@@ -197,9 +197,9 @@ function Player1Game({ room }) {
     } else if (gameState === GameState.Draw) {
       text = "Game is a draw.";
     } else if (gameState === GameState.PlayerOneWin) {
-      text = "Player 1 won!";
+      text = "You won!";
     } else if (gameState === GameState.PlayerTwoWin) {
-      text = "Player 2 won!";
+      text = `${room["1"]?.name} won!`;
     }
 
     return (
