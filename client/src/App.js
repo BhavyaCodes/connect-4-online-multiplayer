@@ -7,7 +7,7 @@ import Game from "./game";
 import Rooms from "./components/Rooms";
 import Login from "./components/Login";
 import { SocketProvider } from "./context/SocketProvider";
-
+import NavBar from "./components/NavBar";
 import "./App.css";
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
 
   return (
     <SocketProvider id={user.id}>
+      <NavBar />
       <Switch>
         <Route path="/" exact>
           <Rooms />

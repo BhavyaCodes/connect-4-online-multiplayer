@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { useSocket } from "../context/SocketProvider";
 import axios from "axios";
+import { Container, Box, Button, Typography } from "@material-ui/core";
 import Player1Game from "../components/Player1Game";
 import Player2Game from "../components/Player2Game";
 
@@ -70,31 +71,46 @@ function Rooms() {
   }
 
   return (
-    <div>
-      <p>Rooms</p>
-      {rooms.map((room) => (
-        <div key={room["0"].id}>
-          <p>{room["0"].name}</p>
-          {room["1"] ? (
-            <p>Game in progress</p>
-          ) : (
-            user.id !== room["0"].id && (
-              <button
-                type="button"
-                onClick={() => {
-                  handleJoinRoom(room["0"].id);
-                }}
-              >
-                Join
-              </button>
-            )
-          )}
-        </div>
-      ))}
-      <button onClick={handleCreateRoom} type="button">
-        Create new room
-      </button>
-    </div>
+    <Container maxWidth="xs">
+      <Box textAlign="center" pt={4}>
+        <Typography variant="h2">Rooms</Typography>
+        {rooms.map((room) => (
+          <div key={room["0"].id}>
+            <Box py={2}>
+              <Typography variant="h5">
+                😃 {room["0"].name}'s Ready to play..
+              </Typography>
+            </Box>
+            {room["1"] ? (
+              <Typography variant="h6">Game in progress</Typography>
+            ) : (
+              user.id !== room["0"].id && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="button"
+                  onClick={() => {
+                    handleJoinRoom(room["0"].id);
+                  }}
+                >
+                  Join
+                </Button>
+              )
+            )}
+          </div>
+        ))}
+        <Box py={4}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleCreateRoom}
+            type="button"
+          >
+            Create new room
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 }
 
