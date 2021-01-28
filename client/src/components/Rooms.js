@@ -43,7 +43,10 @@ function Rooms() {
     <div>
       <p>Rooms</p>
       {rooms.map((room) => (
-        <div key={room["0"].id}>{room["0"].name}</div>
+        <div key={room["0"].id}>
+          <p>{room["0"].name}</p>
+          {user.id !== room["0"].id && <button type="button">Join</button>}
+        </div>
       ))}
       <button onClick={handleCreateRoom} type="button">
         Create new room
