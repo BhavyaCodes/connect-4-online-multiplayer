@@ -9,7 +9,6 @@ const rooms = {};
 
 app.use(express.json());
 app.use(cors());
-server.use(cors());
 app.get("/api/rooms", (req, res) => {
   res.json(rooms);
 });
