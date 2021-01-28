@@ -24,7 +24,15 @@ app.get("/api/ping", (req, res, next) => {
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
-  socket.on("new-room", (room, user) => {});
+  socket.on("join-room", (roomId, user) => {
+    rooms[roomId][1] = user;
+    io.emit("room-created", rooms);
+    console.log(rooms);
+  });
+  socket.on("disconnect", () => {
+    delete rooms[id];
+    io.emit("room-created", rooms);
+  });
 });
 
 const PORT = process.env.PORT || 5000;

@@ -13,13 +13,6 @@ import "./App.css";
 
 function App() {
   const user = useContext(UserContext);
-  // useEffect(() => {
-  //   const test = async () => {
-  //     const response = await axios.get("/api/ping");
-  //     console.log(response);
-  //   };
-  //   test();
-  // }, []);
 
   if (!user.id) {
     return <Login />;
