@@ -230,7 +230,9 @@ function Player2Game({ room }) {
         </Box>
         {gameState === GameState.Ongoing ? (
           <Typography variant="h3" align="center">
-            Player {playerTurn}'s Turn
+            {playerTurn === Player.Two
+              ? "Your Turn"
+              : `${room["0"]?.name}'s turn`}
           </Typography>
         ) : null}
       </Box>

@@ -231,7 +231,9 @@ function Player1Game({ room }) {
         </Box>
         {gameState === GameState.Ongoing ? (
           <Typography variant="h3" align="center">
-            Player {playerTurn}'s Turn
+            {playerTurn === Player.One
+              ? "Your Turn"
+              : `${room["1"]?.name}'s turn`}
           </Typography>
         ) : null}
       </Box>
