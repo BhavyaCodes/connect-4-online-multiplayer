@@ -154,7 +154,7 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
     return () => {
       clearTimeout(timeout);
     };
-  }, [gameState, setGameCreated]);
+  }, [gameState, setGameCreated, closeRoom]);
 
   if (!room) {
     return <h1>Disconnected</h1>;
