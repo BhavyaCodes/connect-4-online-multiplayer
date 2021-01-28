@@ -156,7 +156,18 @@ function Player2Game({ room, setGameJoined }) {
   }, [gameState, setGameJoined]);
 
   if (!room) {
-    return <h1>Disconnected</h1>;
+    return (
+      <div>
+        <h1>Disconnected</h1>
+        <button
+          onClick={() => {
+            setGameJoined(false);
+          }}
+        >
+          Go Back
+        </button>
+      </div>
+    );
   }
 
   const renderCells = () => {
