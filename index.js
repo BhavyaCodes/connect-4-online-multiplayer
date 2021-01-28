@@ -29,6 +29,10 @@ io.on("connection", (socket) => {
     io.emit("room-created", rooms);
     console.log(rooms);
   });
+  socket.on("disconnect", () => {
+    delete rooms[id];
+    io.emit("room-created", rooms);
+  });
 });
 
 const PORT = process.env.PORT || 5000;
