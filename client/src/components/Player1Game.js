@@ -230,7 +230,11 @@ function Player1Game({ room }) {
           {renderCells()}
         </Box>
         {gameState === GameState.Ongoing ? (
-          <Typography variant="h3" align="center">
+          <Typography
+            variant="h3"
+            align="center"
+            className={playerTurn === Player.One ? "yellow-text" : "red-text"}
+          >
             {playerTurn === Player.One
               ? "Your Turn"
               : `${room["1"]?.name}'s turn`}
