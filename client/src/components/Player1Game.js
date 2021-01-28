@@ -158,7 +158,11 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
   }, [gameState, setGameCreated, closeRoom]);
 
   if (!room) {
-    return <h1>Disconnected</h1>;
+    return (
+      <Box textAlign="center" pt={6}>
+        <Typography variant="h4">🤖 Connecting...beep boop beep boop!</Typography>
+      </Box>
+    );
   }
   const renderCells = () => {
     return board.map((player, index) => renderCell(player, index));
@@ -207,7 +211,7 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
   const renderGameStatus = () => {
     let text;
     if (gameState === GameState.Ongoing) {
-      text = "Game is in progress...";
+      text = "Game is in progress... 🔥";
     } else if (gameState === GameState.Draw) {
       text = "Game is a draw.";
     } else if (gameState === GameState.PlayerOneWin) {
@@ -217,19 +221,18 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
     }
 
     return (
-      <Typography variant="h3" align="center" mb={1}>
+      <Typography variant="h5" textAlign="center" mb={1}>
         {text}
       </Typography>
     );
   };
 
   return (
-    <div>
-      <h1>Player 1 Game</h1>
+    <Box textAlign="center">
       {!room["1"]?.name ? (
         <Typography
           style={{ fontWeight: 500 }}
-          variant="h2"
+          variant="h3"
           align="center"
           gutterBottom
         >
@@ -238,11 +241,11 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
       ) : (
         <Typography
           style={{ fontWeight: 500 }}
-          variant="h2"
+          variant="h3"
           align="center"
           gutterBottom
         >
-          <span className="yellow-text">{room["0"]?.name}</span> vs{" "}
+          <span className="yellow-text">{room["0"]?.name}</span> v/s{" "}
           <span className="red-text">{room["1"]?.name}</span>
         </Typography>
       )}
@@ -267,7 +270,7 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
           </Typography>
         ) : null}
       </Box>
-    </div>
+    </Box>
   );
 }
 
