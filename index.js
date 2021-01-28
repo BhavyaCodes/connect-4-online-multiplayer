@@ -21,9 +21,13 @@ io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
   socket.on("create-room", (user) => {
-    rooms[user.id] = { 0: user };
-    io.emit("room-created", rooms);
-    socket.join(user.id);
+    try {
+      rooms[user.id] = { 0: user };
+      io.emit("room-created", rooms);
+      socket.join(user.id);
+    } catch (error) {
+      console.log(error);
+    }
   });
   socket.on("join-room", (roomId, user) => {
     try {
@@ -35,15 +39,27 @@ io.on("connection", (socket) => {
     }
   });
   socket.on("send-turn", (roomId, state) => {
-    socket.to(roomId).broadcast.emit("turn", state);
+    try {
+      socket.to(roomId).broadcast.emit("turn", state);
+    } catch (error) {
+      console.log(error);
+    }
   });
   socket.on("close-room", () => {
-    delete rooms[id];
-    io.emit("room-created", rooms);
+    try {
+      delete rooms[id];
+      io.emit("room-created", rooms);
+    } catch (error) {
+      console.log(error);
+    }
   });
   socket.on("disconnect", () => {
-    delete rooms[id];
-    io.emit("room-created", rooms);
+    try {
+      delete rooms[id];
+      io.emit("room-created", rooms);
+    } catch (error) {
+      console.log(error);
+    }
   });
 });
 
