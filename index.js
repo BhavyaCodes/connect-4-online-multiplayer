@@ -33,6 +33,10 @@ io.on("connection", (socket) => {
   socket.on("send-turn", (roomId, state) => {
     socket.to(roomId).broadcast.emit("turn", state);
   });
+  socket.on("close-room", () => {
+    delete rooms[id];
+    io.emit("room-created", rooms);
+  });
   socket.on("disconnect", () => {
     delete rooms[id];
     io.emit("room-created", rooms);
