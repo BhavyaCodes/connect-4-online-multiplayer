@@ -1,4 +1,4 @@
-function Player1Game({ room }) {
+function Player2Game({ room }) {
   console.log(room);
   if (!room) {
     return <h1>Disconnected</h1>;
@@ -7,9 +7,9 @@ function Player1Game({ room }) {
     <div>
       <h1>Player 1 Game</h1>
       <h2>{room["0"]?.name}</h2>
-      <h2>{room["1"]?.name || "waiting for player 2"}</h2>
+      <h2>{room["1"]?.name}</h2>
     </div>
   );
 }
 
-export default Player1Game;
+export default Player2Game;

@@ -3,12 +3,14 @@ import { UserContext } from "../context/UserContext";
 import { useSocket } from "../context/SocketProvider";
 import axios from "axios";
 import Player1Game from "../components/Player1Game";
+import Player2Game from "../components/Player1Game";
 
 function Rooms() {
   const user = useContext(UserContext);
   const [rooms, setRooms] = useState([]);
   const socket = useSocket();
   const [gameCreated, setGameCreated] = useState(null);
+  const [gameJoined, setGameJoined] = useState(null);
 
   console.log(rooms);
 
@@ -45,13 +47,17 @@ function Rooms() {
   }, [socket]);
 
   function handleJoinRoom(roomId) {
-    console.log(roomId);
+    setGameJoined(roomId);
     socket.emit("join-room", roomId, user);
   }
 
   if (gameCreated) {
     const index = rooms.findIndex((value) => value["0"].id === user.id);
     return <Player1Game room={rooms[index]} />;
+  }
+  if (gameJoined) {
+    const index = rooms.findIndex((value) => value["0"].id === gameJoined);
+    return <Player2Game room={rooms[index]} />;
   }
 
   return (
