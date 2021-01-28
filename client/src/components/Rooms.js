@@ -15,7 +15,8 @@ function Rooms() {
   console.log(rooms);
 
   async function handleCreateRoom() {
-    await axios.post("/api/room", user);
+    // await axios.post("/api/room", user);
+    socket.emit("create-room", user);
     setGameCreated(true);
   }
 

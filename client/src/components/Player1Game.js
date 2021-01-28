@@ -1,4 +1,7 @@
+import { useSocket } from "../context/SocketProvider";
+
 function Player1Game({ room }) {
+  const socket = useSocket();
   console.log(room);
   if (!room) {
     return <h1>Disconnected</h1>;

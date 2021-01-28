@@ -11,11 +11,11 @@ app.get("/api/rooms", (req, res) => {
   res.json(rooms);
 });
 
-app.post("/api/room", (req, res) => {
-  rooms[req.body.id] = { 0: req.body };
-  io.emit("room-created", rooms);
-  res.json();
-});
+// app.post("/api/room", (req, res) => {
+//   rooms[req.body.id] = { 0: req.body };
+//   io.emit("room-created", rooms);
+//   res.json();
+// });
 
 app.get("/api/ping", (req, res, next) => {
   res.json({ ping: "pong" });
@@ -24,10 +24,22 @@ app.get("/api/ping", (req, res, next) => {
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
+  socket.on("create-room", (user) => {
+    rooms[user.id] = { 0: user };
+    io.emit("room-created", rooms);
+    socket.join(user.id);
+  });
   socket.on("join-room", (roomId, user) => {
     rooms[roomId][1] = user;
     io.emit("room-created", rooms);
+    socket.join(roomId);
     console.log(rooms);
+  });
+  socket.on("send-turn", (roomId, state) => {
+    console.log(state);
+    socket.to(roomId).emit("turn", {
+      state,
+    });
   });
   socket.on("disconnect", () => {
     delete rooms[id];
