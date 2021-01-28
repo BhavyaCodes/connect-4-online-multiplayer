@@ -23,3 +23,11 @@
 .board > .cell[data-player="playerTwo"] {
   background-image: linear-gradient(#fb7272, #da0000);
 }
+
+.red-text {
+  color: #da0000;
+}
+
+.yellow-text {
+  color: #cece00;
+}

@@ -130,13 +130,11 @@ function Player1Game({ room }) {
   const [board, setBoard] = useState(intitializeBoard());
   const [playerTurn, setPlayerTurn] = useState(Player.One);
   const [gameState, setGameState] = useState(GameState.Ongoing);
-  console.log(room);
 
   useEffect(() => {
     if (socket == null) return;
 
     socket.on("turn", (state) => {
-      console.log(state);
       setBoard(state.board);
       setPlayerTurn(state.playerTurn);
       setGameState(state.gameState);
@@ -214,15 +212,8 @@ function Player1Game({ room }) {
   return (
     <div>
       <h1>Player 1 Game</h1>
-      <h2>{room["0"]?.name}</h2>
-      <h2>{room["1"]?.name || "waiting for player 2"}</h2>
-      <button
-        onClick={() => {
-          socket.emit("send-turn", room["0"].id, "xyz");
-        }}
-      >
-        Test
-      </button>
+      <h2 className="yellow-text">{room["0"]?.name}</h2>
+      <h2 className="red-text">{room["1"]?.name || "waiting for player 2"}</h2>
 
       <Box>
         {renderGameStatus()}
@@ -230,7 +221,11 @@ function Player1Game({ room }) {
           {renderCells()}
         </Box>
         {gameState === GameState.Ongoing ? (
-          <Typography variant="h3" align="center">
+          <Typography
+            variant="h3"
+            align="center"
+            className={playerTurn === Player.One ? "yellow-text" : "red-text"}
+          >
             {playerTurn === Player.One
               ? "Your Turn"
               : `${room["1"]?.name}'s turn`}

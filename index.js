@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
 const server = require("http").Server(app);
@@ -7,6 +8,7 @@ const io = require("socket.io")(server);
 const rooms = {};
 
 app.use(express.json());
+app.use(cors());
 app.get("/api/rooms", (req, res) => {
   res.json(rooms);
 });
@@ -27,10 +29,8 @@ io.on("connection", (socket) => {
     rooms[roomId][1] = user;
     io.emit("room-created", rooms);
     socket.join(roomId);
-    console.log(rooms);
   });
   socket.on("send-turn", (roomId, state) => {
-    console.log(state);
     socket.to(roomId).broadcast.emit("turn", state);
   });
   socket.on("disconnect", () => {

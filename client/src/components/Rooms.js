@@ -12,8 +12,6 @@ function Rooms() {
   const [gameCreated, setGameCreated] = useState(null);
   const [gameJoined, setGameJoined] = useState(null);
 
-  console.log(rooms);
-
   async function handleCreateRoom() {
     socket.emit("create-room", user);
     setGameCreated(true);
@@ -21,7 +19,9 @@ function Rooms() {
 
   useEffect(() => {
     const getRooms = async () => {
-      const rooms = (await axios.get("/api/rooms")).data;
+      const rooms = (
+        await axios.get(`${process.env.REACT_APP_API_URL}/api/rooms`)
+      ).data;
       const arr = [];
       for (let key in rooms) {
         arr.push(rooms[key]);
@@ -35,7 +35,6 @@ function Rooms() {
     if (socket == null) return;
 
     socket.on("room-created", (rooms) => {
-      console.log(rooms);
       const arr = [];
       for (let key in rooms) {
         arr.push(rooms[key]);

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Box } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
-// import axios from "axios";
 import { UserContext } from "./context/UserContext";
 import Game from "./game";
 import Rooms from "./components/Rooms";
