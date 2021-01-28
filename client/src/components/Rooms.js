@@ -19,7 +19,9 @@ function Rooms() {
 
   useEffect(() => {
     const getRooms = async () => {
-      const rooms = (await axios.get("/api/rooms")).data;
+      const rooms = (
+        await axios.get(`${process.env.REACT_APP_API_URL}/api/rooms`)
+      ).data;
       const arr = [];
       for (let key in rooms) {
         arr.push(rooms[key]);
