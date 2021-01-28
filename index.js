@@ -31,9 +31,7 @@ io.on("connection", (socket) => {
   });
   socket.on("send-turn", (roomId, state) => {
     console.log(state);
-    socket.to(roomId).broadcast.emit("turn", {
-      state,
-    });
+    socket.to(roomId).broadcast.emit("turn", state);
   });
   socket.on("disconnect", () => {
     delete rooms[id];
