@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSocket } from "../context/SocketProvider";
 import { Box, Typography } from "@material-ui/core";
+import Confetti from "react-dom-confetti";
 
 import "./game.css";
 
@@ -255,12 +256,18 @@ function Player2Game({ room, setGameJoined }) {
           <span className="red-text">{room["1"]?.name}</span>
         </Typography>
       )}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Confetti active={gameState === 2} />
+      </div>
 
       <Box>
         {renderGameStatus()}
         <Box className="board" my={2}>
           {renderCells()}
         </Box>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Confetti style={{ margin: "auto" }} active={gameState === 1} />
+        </div>
         {gameState === GameState.Ongoing ? (
           <Typography
             variant="h3"

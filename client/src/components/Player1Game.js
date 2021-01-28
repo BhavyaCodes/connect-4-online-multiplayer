@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSocket } from "../context/SocketProvider";
 import { Box, Typography } from "@material-ui/core";
+import Confetti from "react-dom-confetti";
 
 import "./game.css";
 
@@ -251,6 +252,9 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
         <Box className="board" my={2}>
           {renderCells()}
         </Box>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Confetti style={{ margin: "auto" }} active={gameState === 1} />
+        </div>
         {gameState === GameState.Ongoing ? (
           <Typography
             variant="h3"
