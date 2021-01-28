@@ -226,11 +226,21 @@ function Player1Game({ room, setGameCreated, closeRoom }) {
     <div>
       <h1>Player 1 Game</h1>
       {!room["1"]?.name ? (
-        <Typography variant="h2" align="center" gutterBottom>
+        <Typography
+          style={{ fontWeight: 500 }}
+          variant="h2"
+          align="center"
+          gutterBottom
+        >
           Waiting for player 2
         </Typography>
       ) : (
-        <Typography variant="h2" align="center" gutterBottom>
+        <Typography
+          style={{ fontWeight: 500 }}
+          variant="h2"
+          align="center"
+          gutterBottom
+        >
           <span className="yellow-text">{room["0"]?.name}</span> vs{" "}
           <span className="red-text">{room["1"]?.name}</span>
         </Typography>

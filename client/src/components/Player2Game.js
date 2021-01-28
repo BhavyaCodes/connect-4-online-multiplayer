@@ -236,11 +236,21 @@ function Player2Game({ room, setGameJoined }) {
     <div>
       <h1>Player 2 Game</h1>
       {!room["1"]?.name ? (
-        <Typography variant="h2" align="center" gutterBottom>
+        <Typography
+          variant="h2"
+          align="center"
+          gutterBottom
+          style={{ fontWeight: 500 }}
+        >
           Waiting for player 2
         </Typography>
       ) : (
-        <Typography variant="h2" align="center" gutterBottom>
+        <Typography
+          variant="h2"
+          align="center"
+          gutterBottom
+          style={{ fontWeight: 500 }}
+        >
           <span className="yellow-text">{room["0"]?.name}</span> vs{" "}
           <span className="red-text">{room["1"]?.name}</span>
         </Typography>
