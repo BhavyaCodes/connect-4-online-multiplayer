@@ -11,12 +11,6 @@ app.get("/api/rooms", (req, res) => {
   res.json(rooms);
 });
 
-// app.post("/api/room", (req, res) => {
-//   rooms[req.body.id] = { 0: req.body };
-//   io.emit("room-created", rooms);
-//   res.json();
-// });
-
 app.get("/api/ping", (req, res, next) => {
   res.json({ ping: "pong" });
 });
@@ -37,7 +31,7 @@ io.on("connection", (socket) => {
   });
   socket.on("send-turn", (roomId, state) => {
     console.log(state);
-    socket.to(roomId).emit("turn", {
+    socket.to(roomId).broadcast.emit("turn", {
       state,
     });
   });
