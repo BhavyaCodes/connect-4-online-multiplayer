@@ -1,26 +1,32 @@
-import { useEffect } from "react";
+import { useContext } from "react";
 import { Box } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
-import axios from "axios";
-
-import { UserProvider } from "./context/UserContext";
+// import axios from "axios";
+import { UserContext } from "./context/UserContext";
 import Game from "./game";
 import Rooms from "./components/Rooms";
+import Login from "./components/Login";
+import { SocketProvider } from "./context/SocketProvider";
 
 import "./App.css";
 
 function App() {
-  useEffect(() => {
-    const test = async () => {
-      const response = await axios.get("/api/ping");
-      console.log(response);
-    };
-    test();
-  }, []);
+  const user = useContext(UserContext);
+  // useEffect(() => {
+  //   const test = async () => {
+  //     const response = await axios.get("/api/ping");
+  //     console.log(response);
+  //   };
+  //   test();
+  // }, []);
+
+  if (!user.id) {
+    return <Login />;
+  }
 
   return (
-    <UserProvider>
+    <SocketProvider id={user.id}>
       <Switch>
         <Route path="/" exact>
           <Rooms />
@@ -31,7 +37,7 @@ function App() {
           </Box>
         </Route>
       </Switch>
-    </UserProvider>
+    </SocketProvider>
   );
 }
 
