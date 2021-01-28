@@ -155,6 +155,7 @@ function Player1Game({ room }) {
   const handleOnClick = (index) => () => {
     if (gameState !== GameState.Ongoing) return;
     if (playerTurn !== Player.One) return;
+    if (!room["1"]) return;
 
     const column = index % 7;
 
