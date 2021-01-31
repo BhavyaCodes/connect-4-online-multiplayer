@@ -47,6 +47,7 @@ function Rooms() {
   }, [socket]);
 
   function closeRoom() {
+    console.log("close-room");
     socket.emit("close-room");
   }
 
