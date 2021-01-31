@@ -8,6 +8,7 @@ export default function Login() {
   const setUser = useContext(DispatchUserContext);
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(iRef.current.value);
     setUser({ id: v4(), name: iRef.current.value });
   }
 
@@ -20,7 +21,7 @@ export default function Login() {
             id="outlined-basic"
             label="Enter your name"
             variant="outlined"
-            ref={iRef}
+            inputRef={iRef}
             required
           />
           <Box py={4}>
