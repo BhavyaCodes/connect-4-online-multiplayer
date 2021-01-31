@@ -8,7 +8,6 @@ export default function Login() {
   const setUser = useContext(DispatchUserContext);
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(iRef.current.value);
     setUser({ id: v4(), name: iRef.current.value });
   }
 
