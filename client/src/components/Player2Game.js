@@ -269,7 +269,7 @@ function Player2Game({ room, setGameJoined }) {
           {renderCells()}
         </Box>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Confetti style={{ margin: "auto" }} active={gameState === 1} />
+          <Confetti style={{ margin: "auto" }} active={gameState === 2} />
         </div>
         {gameState === GameState.Ongoing ? (
           <Typography
