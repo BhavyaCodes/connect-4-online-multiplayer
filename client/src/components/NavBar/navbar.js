@@ -1,6 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, Link, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Link,
+  IconButton,
+} from "@material-ui/core";
 
 import GitHubIcon from "@material-ui/icons/GitHub";
 
@@ -19,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar() {
   const classes = useStyles();
 
-  const preventDefault = (event) => event.preventDefault();
+  // const preventDefault = (event) => event.preventDefault();
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -29,10 +35,20 @@ export default function NavBar() {
           </Typography>
 
           <div>
-            <Link href="https://github.com/Juggernaut9/connect-4">
-              <Button>
+            <Link
+              href="https://github.com/Juggernaut9/connect-4"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+            >
+              <IconButton
+                aria-label="Github repository link"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              >
                 <GitHubIcon />
-              </Button>
+              </IconButton>
             </Link>
           </div>
         </Toolbar>

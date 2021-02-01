@@ -20,7 +20,7 @@ export default function Login() {
             id="outlined-basic"
             label="Enter your name"
             variant="outlined"
-            ref={iRef}
+            inputRef={iRef}
             required
           />
           <Box py={4}>

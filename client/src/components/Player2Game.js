@@ -4,7 +4,6 @@ import { useSocket } from "../context/SocketProvider";
 import Confetti from "react-dom-confetti";
 import { Box, Typography, Button } from "@material-ui/core";
 
-
 import "./game.css";
 
 const Player = {
@@ -263,9 +262,6 @@ function Player2Game({ room, setGameJoined }) {
           <span className="red-text">{room["1"]?.name}</span>
         </Typography>
       )}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Confetti active={gameState === 2} />
-      </div>
 
       <Box>
         {renderGameStatus()}
@@ -273,7 +269,7 @@ function Player2Game({ room, setGameJoined }) {
           {renderCells()}
         </Box>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Confetti style={{ margin: "auto" }} active={gameState === 1} />
+          <Confetti style={{ margin: "auto" }} active={gameState === 2} />
         </div>
         {gameState === GameState.Ongoing ? (
           <Typography
