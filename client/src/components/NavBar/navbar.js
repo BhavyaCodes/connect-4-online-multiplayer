@@ -36,7 +36,7 @@ export default function NavBar() {
 
           <div>
             <Link
-              href="https://github.com/Juggernaut9/connect-4"
+              href="https://github.com/BhavyaCodes/connect-4-online-multiplayer"
               target="_blank"
               rel="noopener noreferrer"
               color="inherit"
