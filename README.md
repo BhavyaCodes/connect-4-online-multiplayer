@@ -8,7 +8,7 @@
 
 <img src="/.github/demo.gif" width="100%">
 
-#### Form video (with audio) explanation of the project on this project check this <a href="https://www.linkedin.com/posts/bhavya-tomar_careerhack-github-hackathon-activity-6760854974944694272-aEDM">LinkedIn post</a>
+#### For video (with audio explanation) of the project on this project check this <a href="https://www.linkedin.com/posts/bhavya-tomar_careerhack-github-hackathon-activity-6760854974944694272-aEDM">LinkedIn post</a>
 
 ---
 
