@@ -12,6 +12,15 @@
 
 ---
 
+## Features
+
+- no download or signup required.
+- Supports multiple instances of games (several people can play in pairs at the same time without any interruption).
+- Play with anyone around the world.
+- Super fun game :)
+
+---
+
 ## Tech used to build this project
 
 <table>
